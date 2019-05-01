@@ -27,6 +27,10 @@ include_once ("navigation.html");
             <input type="text" name="name" class="form-control" id="name" placeholder="Full Name">
         </div>
 <!--        TODO: Add Other Fields here!-->
+        <div class="form-group">
+            <label for="desig">Designation</label>
+            <input type="text" name="desig" class="form-control" id="desig" placeholder="Designation">
+        </div>
         <button type="submit" class="btn btn-primary">Add New Employee</button>
     </form>
 </div>

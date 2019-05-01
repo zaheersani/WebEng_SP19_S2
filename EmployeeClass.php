@@ -22,8 +22,13 @@ class Employee {
      * Function takes employee attributes to insert into database
      * Function returns true on successful insertion, otherwise false
      */
-    public function Insert($id, $EmpID, $FullName, $Designation) {
+    public function Insert($EmpID, $FullName, $Designation) {
         // TODO: Write Definition to insert record into database
+        $sql = "INSERT INTO employee (id, EmpID, FullName, Designation) VALUES (NULL, '$EmpID', '$FullName', '$Designation')";
+        $count = $this->pdo->exec($sql);
+        if($count > 0)
+            return true;
+        return false;
     }
 
     /*
@@ -32,6 +37,11 @@ class Employee {
      */
     public function Update($id, $EmpID, $FullName, $Designation) {
         // TODO: Write Definition of this method
+        $sql = "UPDATE employee SET EmpID = '$EmpID', FullName = '$FullName', Designation = '$Designation' WHERE id = $id";
+        $count = $this->pdo->exec($sql);
+        if($count > 0)
+            return true;
+        return false;
     }
 
     /*
@@ -43,7 +53,6 @@ class Employee {
         $empArr = array();
         $i = 0;
         while($row = $result->fetch()) {
-            $row['EmpID'];
             $empArr[$i] = new Employee($row['id'], $row['EmpID'], $row['FullName'], $row['Designation']);
             $i++;
         }
@@ -56,6 +65,13 @@ class Employee {
      */
     public function GetSingleRecord($id) {
         // TODO: Write definition of this method
+        $sql = "select * from employee WHERE id = $id";
+        $result = $this->pdo->query($sql);
+        $empObj = null;
+        while($row = $result->fetch()) {
+            $empObj = new Employee($row['id'], $row['EmpID'], $row['FullName'], $row['Designation']);
+        }
+        return $empObj;
     }
 
     /*
@@ -63,6 +79,11 @@ class Employee {
      */
     public function Delete($id) {
         // TODO: Write Definition of this method
+        $sql = "DELETE from employee WHERE id = $id";
+        $count = $this->pdo->exec($sql);
+        if($count > 0)
+            return true;
+        return false;
     }
 }
 

@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Shehla
- * Date: 18-Apr-19
- * Time: 21:23
- */
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,27 +11,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <?php
-    require_once("EmployeeClass.php");
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // TODO: Write code below this line to insert record
-        $emp = new Employee();
-        if(!$emp->Insert($_POST['empid'], $_POST['name'], $_POST['desig'])) {
-            echo "Cannot Add new Employee record!";
-            return;
-        }
-    }
-    ?>
-
 </head>
 <body>
 <?php
 include_once ("navigation.html");
+require_once("EmployeeClass.php");
+$emp = new Employee();
+if(isset($_GET["id"]) && !empty($_GET["id"])) {
+    if($emp->Delete($_GET["id"])) {
+        echo "Record has been deleted successfully!";
+        return;
+    }
+    echo "Something went wrong! Record has not been deleted!";
+}
+else {
+    echo "Specify Employee id";
+}
+
 ?>
-<div class="container col-md-5">
-    <p>
-        New Record has been entered into the database!
-    </p>
-</div>
 </body>
 </html>

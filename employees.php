@@ -42,6 +42,9 @@ include_once ("navigation.html");
                     <a href="employeeedit.php?id=<?= $empObj->id ?>">
                         <button type="button" class="btn btn-primary">Edit</button>
                     </a>
+                    <a href="employeedelete.php?id=<?= $empObj->id ?>">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </a>
                 </td>
             <!--TODO: Add A Button to Delete Record
                 TODO: Create a delete action page where you should delete record with success or fail message.
